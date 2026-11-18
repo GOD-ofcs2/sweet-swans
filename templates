@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Swans • Star Stable Dressage Klub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0d0b14;
+            color: #f3f0f8;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Cinzel', serif;
+        }
+        .glass-card {
+            background: rgba(25, 20, 40, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(192, 132, 252, 0.2);
+        }
+        .gold-glow:hover {
+            box-shadow: 0 0 25px rgba(250, 204, 21, 0.25);
+            border-color: rgba(250, 204, 21, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500 selection:text-white">
+
+    <!-- NAVIGÁCIÓ & DISCORD OAUTH2 -->
+    <nav class="fixed w-full z-50 glass-card border-b border-purple-900/40">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold brand-font bg-gradient-to-r from-purple-300 via-pink-200 to-amber-200 bg-clip-text text-transparent">
+                🦢 Sweet Swans
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-purple-200">
+                <a href="#rolunk" class="hover:text-amber-300 transition">Rólunk</a>
+                <a href="#szett" class="hover:text-amber-300 transition">Klubszett</a>
+                <a href="#toplista" class="hover:text-amber-300 transition">XP Toplista</a>
+                <a href="#jelentkezes" class="hover:text-amber-300 transition">Jelentkezés</a>
+            </div>
+            <div>
+                {% if user %}
+                <div class="flex items-center space-x-3 bg-purple-950/80 px-3 py-1.5 rounded-full border border-purple-500/30">
+                    <img src="{{ user.avatar }}" alt="Avatar" class="w-7 h-7 rounded-full">
+                    <span class="text-sm font-semibold text-purple-100">{{ user.username }}</span>
+                    <a href="/logout" class="text-xs text-rose-400 hover:text-rose-300 ml-2">Kilépés</a>
+                </div>
+                {% else %}
+                <a href="/login" class="flex items-center space-x-2 bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-lg">
+                    <span>Belépés Discorddal</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SZEKCIÓ -->
+    <header class="pt-32 pb-20 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/30 via-[#0d0b14] to-[#0d0b14] -z-10"></div>
+        <div class="max-w-3xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded-full bg-purple-900/50 border border-purple-500/30 text-purple-200 text-xs tracking-wider uppercase mb-4">
+                Star Stable Online • Magyar Dressage Klub
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+                Elegancia, Összhang és <span class="text-amber-300">Szenvedély</span>
+            </h1>
+            <p class="text-purple-200/80 text-lg mb-8 leading-relaxed">
+                Üdvözlünk a Sweet Swans hivatalos oldalán! Csatlakozz egy összetartó, aktív díjlovagló közösséghez, gyűjts XP-t a szerveren, és lépj pályára velünk!
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#jelentkezes" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg transition">
+                    Jelentkezés a klubba
+                </a>
+                <a href="#toplista" class="glass-card hover:bg-purple-900/40 text-purple-100 font-semibold px-8 py-3.5 rounded-xl transition">
+                    Élő Ranglista megtekintése
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- KLUBSZETT & GALÉRIA -->
+    <section id="szett" class="py-16 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-amber-200 mb-2">✨ Hivatalos Klubszett</h2>
+            <p class="text-purple-300/70">Az edzéseken és fellépéseken viselt kötelező felszerelésünk</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-center glass-card p-6 md:p-8 rounded-2xl gold-glow transition duration-300">
+            <div class="rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl">
+                <img src="https://cdn.discordapp.com/attachments/1557094152850767882/1563212691710148728/Skandinav_Svajci_20261023_172830_0000.png?ex=6ae60944&is=6ae4b7c4&hm=e1f3fdff1854d8bb9d039dd6ec4549c40c384ed11f52686415a54f24bc87085f&" 
+                     alt="Sweet Swans Klubszett" class="w-full h-auto object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-white">Lovas & Ló Felszerelés</h3>
+                <p class="text-purple-200/80 text-sm">A klublovunk a <strong>Fehér Andalúz</strong>. Kérjük, az edzésekre az alábbi szettben érkezz:</p>
+                <ul class="space-y-3 text-purple-100">
+                    <li class="flex items-center space-x-3 bg-purple-950/50 p-3 rounded-lg border border-purple-800/40">
+                        <span class="text-amber-300">👕</span>
+                        <span><strong>Felső:</strong> Nemes Csapata</span>
+                    </li>
+                    <li class="flex items-center space-x-3 bg-purple-950/50 p-3 rounded-lg border border-purple-800/40">
+                        <span class="text-amber-300">👖</span>
+                        <span><strong>Nadrág:</strong> Emblémás Díjlovagló</span>
+                    </li>
+                    <li class="flex items-center space-x-3 bg-purple-950/50 p-3 rounded-lg border border-purple-800/40">
+                        <span class="text-amber-300">👢</span>
+                        <span><strong>Csizma:</strong> Rex Stamper</span>
+                    </li>
+                    <li class="flex items-center space-x-3 bg-purple-950/50 p-3 rounded-lg border border-purple-800/40">
+                        <span class="text-amber-300">🎩</span>
+                        <span><strong>Sapka:</strong> Skandináv Svájci</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÉLŐ XP TOPLISTA (KLUB.DB SZINKRON) -->
+    <section id="toplista" class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-amber-200 mb-2">🏆 Klub XP Toplista</h2>
+            <p class="text-purple-300/70">Valós idejű rangsor a Discord szerverünk legaktívabb lovasaiból</p>
+        </div>
+
+        <div class="glass-card rounded-2xl overflow-hidden shadow-xl">
+            {% if toplista %}
+            <div class="divide-y divide-purple-800/30">
+                {% for tag in toplista %}
+                <div class="flex items-center justify-between p-4 hover:bg-purple-900/20 transition">
+                    <div class="flex items-center space-x-4">
+                        <span class="w-8 text-center font-bold text-lg 
+                            {% if tag.helyezes == 1 %}text-amber-400{% elif tag.helyezes == 2 %}text-slate-300{% elif tag.helyezes == 3 %}text-amber-600{% else %}text-purple-400{% endif %}">
+                            #{{ tag.helyezes }}
+                        </span>
+                        <img src="{{ tag.avatar }}" alt="Avatar" class="w-10 h-10 rounded-full border border-purple-400/40">
+                        <div>
+                            <p class="font-semibold text-white">{{ tag.nev }}</p>
+                            <p class="text-xs text-purple-300">{{ tag.szint }}. szintű lovas</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="inline-block bg-purple-950 border border-purple-500/30 text-amber-300 font-bold px-3 py-1 rounded-full text-sm">
+                            {{ tag.xp }} XP
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="p-8 text-center text-purple-300">
+                Még nincs rögzített XP adat az adatbázisban. Beszélgess a Discordon, hogy felkerülj!
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- JELENTKEZÉSI ŰRLAP -->
+    <section id="jelentkezes" class="py-16 px-4 max-w-3xl mx-auto">
+        <div class="glass-card p-8 rounded-2xl shadow-2xl">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-amber-200 mb-2">📝 Jelentkezés a Klubba</h2>
+                <p class="text-purple-300/70 text-sm">Töltsd ki az alábbi adatlapot, és a vezetőség azonnal megkapja Discordon!</p>
+            </div>
+
+            <form id="jelentkezesForm" class="space-y-5">
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-purple-300 mb-1">SSO Játékosnév *</label>
+                        <input type="text" id="jatekos_nev" required placeholder="Pl. Anna Starborn" class="w-full bg-purple-950/60 border border-purple-700/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-purple-300 mb-1">Becenév *</label>
+                        <input type="text" id="becenev" required placeholder="Hogy szólítsunk?" class="w-full bg-purple-950/60 border border-purple-700/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-purple-300 mb-1">Életkor *</label>
+                        <input type="number" id="eletkor" required placeholder="Pl. 16" class="w-full bg-purple-950/60 border border-purple-700/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-purple-300 mb-1">Discord Felhasználónév *</label>
+                        <input type="text" id="discord" required value="{{ user.tag if user else '' }}" placeholder="Pl. annastar" class="w-full bg-purple-950/60 border border-purple-700/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-purple-300 mb-1">Van Star Ridered? *</label>
+                        <select id="starrider" class="w-full bg-purple-950/60 border border-purple-700/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                            <option value="Igen (Lifetime)">Igen (Lifetime)</option>
+                            <option value="Igen (Havi)">Igen (Havi)</option>
+                            <option value="Nincs">Nincs</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-purple-300 mb-1">Van Fehér Andalúzod? *</label>
+                        <select id="andaluz" class="w-full bg-purple-950/60 border border-purple-700/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                            <option value="Igen, megvan">Igen, megvan</option>
+                            <option value="Hamarosan megveszem">Hamarosan megveszem</option>
+                            <option value="Nincs">Nincs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-purple-300 mb-1">Rövid bemutatkozás *</label>
+                    <textarea id="bemutatkozas" rows="3" required placeholder="Mesélj magadról pár mondatban..." class="w-full bg-purple-950/60 border border-purple-700/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-400"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-purple-300 mb-1">Dressage tapasztalat *</label>
+                    <textarea id="dressage" rows="2" required placeholder="Voltál már korábban dressage klubban?" class="w-full bg-purple-950/60 border border-purple-700/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-400"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg transition">
+                    Jelentkezés beküldése
+                </button>
+                <p id="statusMsg" class="text-center text-sm font-medium hidden"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center text-purple-400/60 text-sm border-t border-purple-900/30">
+        © 2026 Sweet Swans Klub • Minden jog fenntartva.
+    </footer>
+
+    <script>
+        document.getElementById("jelentkezesForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById("submitBtn");
+            const statusMsg = document.getElementById("statusMsg");
+            btn.disabled = true;
+            btn.innerText = "Küldés folyamatban...";
+
+            const adat = {
+                jatekos_nev: document.getElementById("jatekos_nev").value,
+                becenev: document.getElementById("becenev").value,
+                eletkor: document.getElementById("eletkor").value,
+                discord: document.getElementById("discord").value,
+                starrider: document.getElementById("starrider").value,
+                andaluz: document.getElementById("andaluz").value,
+                bemutatkozas: document.getElementById("bemutatkozas").value,
+                dressage: document.getElementById("dressage").value
+            };
+
+            const response = await fetch("/jelentkezes", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(adat)
+            });
+
+            const result = await response.json();
+            statusMsg.classList.remove("hidden");
+            if (response.ok) {
+                statusMsg.className = "text-center text-sm font-medium text-emerald-400 mt-3";
+                statusMsg.innerText = "✅ " + result.message;
+                document.getElementById("jelentkezesForm").reset();
+            } else {
+                statusMsg.className = "text-center text-sm font-medium text-rose-400 mt-3";
+                statusMsg.innerText = "⚠️ " + result.message;
+            }
+            btn.disabled = false;
+            btn.innerText = "Jelentkezés beküldése";
+        });
+    </script>
+</body>
+</html>
